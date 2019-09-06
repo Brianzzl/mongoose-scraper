@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const axios = require("axios");
 const cheerio = require("cheerio");
-const PORT = 7000;
+const PORT = process.env.PORT||7000;
 
 // Initialize Express
 const app = express();
