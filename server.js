@@ -1,15 +1,16 @@
-var express = require("express");
-var logger = require("morgan");
-var mongoose = require("mongoose");
-var axios = require("axios");
-var cheerio = require("cheerio");
-
-var PORT = 7000;
+//Dependency
+const express = require("express");
+const logger = require("morgan");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const axios = require("axios");
+const cheerio = require("cheerio");
+const PORT = 7000;
 
 // Initialize Express
-var app = express();
+const app = express();
 
-var db = require("./models");
+const db = require("./models");
 // Configure middleware
 
 // Use morgan logger for logging requests
@@ -21,5 +22,15 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
+
+mongoose.connect(MONGODB_URI);
+
+require("./controller/scraperControl")(app);
+
+
+// Start the server
+app.listen(PORT, function() {
+  console.log("App running on port " + PORT + "!");
+});
