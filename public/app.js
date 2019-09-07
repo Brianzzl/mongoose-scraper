@@ -1,5 +1,5 @@
 // Grab the articles as a json
-$(document).on("click", "#scraperBtn", function() {
+$(document).on("click", "#displayBtn", function() {
 
 
 $.getJSON("/articles", function(data) {
@@ -10,4 +10,8 @@ $.getJSON("/articles", function(data) {
     // $("#news").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link +  "<br />" + data[i].summary+"</p>");
   }
 });
+});
+
+$(document).on("click", "#scrapeBtn", function() {
+  $.get("/scrape");
 });

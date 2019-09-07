@@ -5,12 +5,13 @@ const db = require('../models');
 
 module.exports = function (app) {
 
-app.get("/", function(req, res){
-res.send("index.html");
-});
+// app.get("/", function(req, res){
+// res.send("index.html");
+// });
 
 
 // A GET route for scraping
+
 app.get("/scrape", function(req, res) {
   axios.get("https://techcrunch.com/").then(function(response) {
 
